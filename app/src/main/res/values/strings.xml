@@ -6,4 +6,23 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preferences -->
+    <string name="pref_header_general">General</string>
+
+    <string name="auto_copy_urls">Automatically copy URLs.</string>
+    <string name="auto_copy_urls_desc">Automatically copy the URLs of uploaded images to the clipboard.</string>
+
+    <string name="upload_type_desc_title">Upload privacy</string>
+    <string-array name="upload_type_desc">
+        <item>Ask every time</item>
+        <item>Public</item>
+        <item>Private</item>
+    </string-array>
+    <string-array name="upload_type_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>

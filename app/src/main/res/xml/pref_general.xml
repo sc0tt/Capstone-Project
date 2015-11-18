@@ -1,0 +1,18 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="auto_copy"
+        android:summary="@string/auto_copy_urls_desc"
+        android:title="@string/auto_copy_urls" />
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/upload_type_desc"
+        android:entryValues="@array/upload_type_values"
+        android:key="upload_type"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/upload_type_desc_title" />
+
+</PreferenceScreen>

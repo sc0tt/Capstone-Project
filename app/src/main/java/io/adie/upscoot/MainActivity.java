@@ -1,5 +1,6 @@
 package io.adie.upscoot;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity
                         List<String> images = new Gson().fromJson(result.get("results"), listType);
 
                         Log.d(TAG, String.format("Found %d images.", images.size()));
-                        ((GalleryAdapter)mAdapter).updateDataSet(images);
+                        ((GalleryAdapter) mAdapter).updateDataSet(images);
                         mRefresh.setRefreshing(false);
                     }
                 });
@@ -121,6 +122,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(settingsIntent);
             return true;
         } else if (id == R.id.action_refresh) {
             updateGallery();
@@ -136,18 +139,13 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.uploads) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.settings) {
+            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(settingsIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
