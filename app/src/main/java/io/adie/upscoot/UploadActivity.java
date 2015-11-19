@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -45,7 +46,7 @@ public class UploadActivity extends AppCompatActivity implements UploadPrivacyFr
             UploadPrivacyFragment frag = new UploadPrivacyFragment();
             frag.show(getSupportFragmentManager(), frag.getTag());
         } else {
-            currentIntent.putExtra("privacy", uploadPref.equals("2"));
+            currentIntent.putExtra("private", uploadPref.equals("2"));
             uploadImage();
         }
     }
@@ -56,10 +57,15 @@ public class UploadActivity extends AppCompatActivity implements UploadPrivacyFr
         Uri imageUri = (Uri) currentIntent.getParcelableExtra(Intent.EXTRA_STREAM);
         Log.d(TAG, "uploadImage Uri: " + imageUri.toString());
 
+        String wholeID = DocumentsContract.getDocumentId(imageUri);
+        String id = wholeID.split(":")[1];
+
         String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = contentResolver.query(imageUri, proj, null, null, null);
+        String sel = MediaStore.Images.Media._ID + "=?";
+        Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, proj, sel, new String[]{id}, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
+
         String filePath = cursor.getString(column_index);
         cursor.close();
 

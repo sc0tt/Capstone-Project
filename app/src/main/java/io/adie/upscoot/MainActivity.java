@@ -23,7 +23,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -119,8 +118,8 @@ public class MainActivity extends AppCompatActivity
             Log.d(TAG, String.format("User selected an image: %s", uri.toString()));
             Intent intent = new Intent(MainActivity.this, UploadActivity.class);
             intent.putExtra(Intent.EXTRA_STREAM, uri);
-            //startActivity(intent);
-            Toast.makeText(getApplicationContext(), "This doesn't work yet :(", Toast.LENGTH_SHORT).show();
+            startActivity(intent);
+            //Toast.makeText(getApplicationContext(), "This doesn't work yet :(", Toast.LENGTH_SHORT).show();
         }
     }
 
