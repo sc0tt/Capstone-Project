@@ -8,6 +8,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_settings">Settings</string>
 
+    <string name="cancel">Cancel</string>
+
     <!-- Preferences -->
     <string name="pref_header_general">General</string>
 
@@ -15,6 +17,8 @@
     <string name="auto_copy_urls_desc">Automatically copy the URLs of uploaded images to the clipboard.</string>
 
     <string name="upload_type_desc_title">Upload privacy</string>
+    <string name="privacy_option">Choose Upload Privacy</string>
+    <string name="privacy_option_desc">You can set the default option in the settings to avoid this prompt every time.</string>
     <string-array name="upload_type_desc">
         <item>Ask every time</item>
         <item>Public</item>

@@ -1,10 +1,16 @@
 package io.adie.upscoot;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -17,6 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -31,6 +38,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GalleryAdapter.ViewImageListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int SELECT_PICTURE = 1;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -48,8 +56,11 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                } else {
+                    promptForPhoto();
+                }
             }
         });
 
@@ -76,6 +87,41 @@ public class MainActivity extends AppCompatActivity
                 updateGallery();
             }
         });
+    }
+
+    public void onRequestPermissionsResult(int code, @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (code) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //http://stackoverflow.com/questions/2169649/get-pick-an-image-from-androids-built-in-gallery-app-programmatically
+                    promptForPhoto();
+                }
+            }
+        }
+    }
+
+    public void promptForPhoto() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select a photo"), SELECT_PICTURE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SELECT_PICTURE && resultCode == Activity.RESULT_OK) {
+            if (data == null) {
+                //Display an error
+                return;
+            }
+            Uri uri = data.getData();
+            Log.d(TAG, String.format("User selected an image: %s", uri.toString()));
+            Intent intent = new Intent(MainActivity.this, UploadActivity.class);
+            intent.putExtra(Intent.EXTRA_STREAM, uri);
+            //startActivity(intent);
+            Toast.makeText(getApplicationContext(), "This doesn't work yet :(", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void updateGallery() {

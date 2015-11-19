@@ -7,6 +7,7 @@
         android:title="@string/auto_copy_urls" />
 
     <ListPreference
+
         android:defaultValue="0"
         android:entries="@array/upload_type_desc"
         android:entryValues="@array/upload_type_values"

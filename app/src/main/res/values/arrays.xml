@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="upload_type_prompt_desc">
+        <item>Public</item>
+        <item>Private</item>
+    </string-array>
+    <integer-array name="upload_type_prompt_values">
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+</resources>
