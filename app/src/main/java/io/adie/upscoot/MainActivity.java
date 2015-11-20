@@ -33,6 +33,8 @@ import com.koushikdutta.ion.Ion;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import io.adie.upscoot.adapters.GalleryAdapter;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GalleryAdapter.ViewImageListener {
 
@@ -187,7 +189,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.uploads) {
-
+            Intent uploadedImagesIntent = new Intent(MainActivity.this, UploadedImagesActivity.class);
+            startActivity(uploadedImagesIntent);
         } else if (id == R.id.settings) {
             Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);

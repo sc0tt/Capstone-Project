@@ -1,4 +1,4 @@
-package io.adie.upscoot;
+package io.adie.upscoot.adapters;
 
 import android.app.Activity;
 import android.app.Application;
@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.adie.upscoot.R;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
     private static final String TAG = GalleryAdapter.class.getSimpleName();
@@ -55,7 +57,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         // Set by position here.
         if (!cache.containsKey(mDataset.get(position))) {
             Ion.with(holder.mImageButton)
-                    .centerCrop()
+                    //.centerCrop()
+                    //.crossfade(true)
                     .placeholder(R.drawable.ic_cached_24dp)
                     .error(R.drawable.ic_error_24dp)
                     .load(mDataset.get(position))
@@ -103,6 +106,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         public ViewHolder(View v) {
             super(v);
             mImageButton = (ImageButton) itemView.findViewById(R.id.img_container);
+            mImageButton.setScaleType(ImageView.ScaleType.CENTER_CROP);
         }
     }
 }

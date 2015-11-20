@@ -22,6 +22,8 @@ import com.koushikdutta.ion.Ion;
 
 import java.io.File;
 
+import io.adie.upscoot.tables.UploadedImage;
+
 public class UploadActivity extends AppCompatActivity implements UploadPrivacyFragment.UploadPrivacyDialogListener {
     public static final String UPLOAD_URL = "https://i.sc0tt.net";
     public static final String FILE_FORM = "file";
@@ -57,12 +59,24 @@ public class UploadActivity extends AppCompatActivity implements UploadPrivacyFr
         Uri imageUri = (Uri) currentIntent.getParcelableExtra(Intent.EXTRA_STREAM);
         Log.d(TAG, "uploadImage Uri: " + imageUri.toString());
 
-        String wholeID = DocumentsContract.getDocumentId(imageUri);
-        String id = wholeID.split(":")[1];
-
         String[] proj = {MediaStore.Images.Media.DATA};
-        String sel = MediaStore.Images.Media._ID + "=?";
-        Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, proj, sel, new String[]{id}, null);
+        Uri qry;
+        String sel;
+        String[] args;
+
+        try {
+            String wholeID = DocumentsContract.getDocumentId(imageUri);
+            String id = wholeID.split(":")[1];
+            sel = MediaStore.Images.Media._ID + "=?";
+            qry = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            args = new String[]{id};
+        } catch (IllegalArgumentException ex) {
+            qry = imageUri;
+            sel = null;
+            args = null;
+        }
+
+        Cursor cursor = contentResolver.query(qry, proj, sel, args, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
 
@@ -93,6 +107,9 @@ public class UploadActivity extends AppCompatActivity implements UploadPrivacyFr
                             ClipData clip = ClipData.newPlainText("io.adie.upscoot.uploaded", url);
                             clipboard.setPrimaryClip(clip);
                         }
+
+                        UploadedImage img = new UploadedImage(url, currentIntent.getBooleanExtra("private", false));
+                        img.save();
 
                         Toast.makeText(getApplicationContext(), "Uploaded!", Toast.LENGTH_SHORT).show();
                     }
