@@ -1,5 +1,6 @@
 package io.adie.upscoot;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -48,7 +49,9 @@ public class UploadedImagesActivity extends AppCompatActivity implements Uploade
     }
 
     public void onImageClicked(String key) {
-        // Do nothing yet.
+        Intent intent = new Intent(this, ViewImageActivity.class);
+        intent.putExtra("url", key);
+        startActivity(intent);
     }
 
 }

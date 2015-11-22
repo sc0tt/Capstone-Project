@@ -70,6 +70,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.adie.upscoot.MainActivity" />
         </activity>
+        <activity
+            android:name=".ViewImageActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_view_image"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

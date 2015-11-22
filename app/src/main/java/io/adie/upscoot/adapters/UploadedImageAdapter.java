@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.koushikdutta.async.future.FutureCallback;
@@ -22,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.adie.upscoot.R;
+import io.adie.upscoot.SquareImageButton;
 import io.adie.upscoot.tables.UploadedImage;
 
 public class UploadedImageAdapter extends RecyclerView.Adapter<UploadedImageAdapter.ViewHolder> {
@@ -47,10 +47,9 @@ public class UploadedImageAdapter extends RecyclerView.Adapter<UploadedImageAdap
             @Override
             public void onClick(View v) {
 
-                ImageButton ib = (ImageButton) v;
-                BitmapInfo bi = Ion.with(ib).getBitmapInfo();
-                if (bi.key != null)
-                    mListener.onImageClicked(bi.key);
+                SquareImageButton ib = (SquareImageButton) v;
+                if (ib.url != null)
+                    mListener.onImageClicked(ib.url);
             }
         });
 
@@ -85,7 +84,7 @@ public class UploadedImageAdapter extends RecyclerView.Adapter<UploadedImageAdap
                 holder.mImageButton.setImageResource(R.drawable.ic_error_24dp);
             }
         }
-
+        holder.mImageButton.url = mDataset.get(position);
     }
 
     @Override
@@ -116,11 +115,11 @@ public class UploadedImageAdapter extends RecyclerView.Adapter<UploadedImageAdap
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageButton mImageButton;
+        public SquareImageButton mImageButton;
 
         public ViewHolder(View v) {
             super(v);
-            mImageButton = (ImageButton) itemView.findViewById(R.id.img_container);
+            mImageButton = (SquareImageButton) itemView.findViewById(R.id.img_container);
             mImageButton.setScaleType(ImageView.ScaleType.CENTER_CROP);
         }
     }

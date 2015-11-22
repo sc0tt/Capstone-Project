@@ -202,6 +202,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onImageClicked(String key) {
-        // Do nothing yet.
+        Intent intent = new Intent(this, ViewImageActivity.class);
+        intent.putExtra("url", key);
+        startActivity(intent);
     }
 }
