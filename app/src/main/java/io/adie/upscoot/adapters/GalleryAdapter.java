@@ -3,6 +3,7 @@ package io.adie.upscoot.adapters;
 import android.app.Activity;
 import android.app.Application;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +43,11 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
             @Override
             public void onClick(View v) {
 
+                Log.d(TAG, "Adapter clicked");
+
                 SquareImageButton ib = (SquareImageButton) v;
                 if (ib.url != null)
+                    Log.d(TAG, "ib.url != null");
                     mListener.onImageClicked(ib.url);
             }
         });
@@ -106,6 +110,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
             super(v);
             mImageButton = (SquareImageButton) itemView.findViewById(R.id.img_container);
             mImageButton.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
         }
     }
 }

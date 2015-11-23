@@ -1,22 +1,24 @@
 package io.adie.upscoot;
 
 import android.app.Application;
-import android.content.Context;
 
-public class UpscootApplication extends Application {
-    private static UpscootApplication instance;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
+import com.orm.SugarApp;
 
-    public static UpscootApplication getInstance() {
-        return instance;
-    }
+public class UpscootApplication extends SugarApp {
+    private Tracker mTracker;
 
-    public static Context getContext() {
-        return instance;
-    }
-
-    @Override
-    public void onCreate() {
-        instance = this;
-        super.onCreate();
+    /**
+     * Gets the default {@link Tracker} for this {@link Application}.
+     * @return tracker
+     */
+    synchronized public Tracker getDefaultTracker() {
+        if (mTracker == null) {
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+            // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+            mTracker = analytics.newTracker(R.xml.global_tracker);
+        }
+        return mTracker;
     }
 }

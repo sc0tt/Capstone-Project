@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="io.adie.upscoot.UploadedImagesActivity"
     tools:showIn="@layout/activity_uploaded_images">
 
     <fragment
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:name="io.adie.upscoot.UploadedImagesFragment"
         android:id="@+id/uploaded_fragment_container"
         tools:layout="@layout/fragment_uploaded_images" />
 
-</RelativeLayout>
+    <FrameLayout
+        android:id="@+id/view_image_container"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

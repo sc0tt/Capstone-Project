@@ -32,6 +32,6 @@
     <string name="title_activity_uploaded_images">My Images</string>
 
     <string name="title_activity_view_image">View Image</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-5339567930089135/9360146918</string>
 </resources>

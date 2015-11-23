@@ -1,20 +1,21 @@
 package io.adie.upscoot;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Toast;
+import android.util.Log;
 
-import com.koushikdutta.ion.Ion;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class ViewImageActivity extends AppCompatActivity {
+    static final String TAG = ViewImageActivity.class.getSimpleName();
+    private Tracker mTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,26 +25,24 @@ public class ViewImageActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_view_image);
 
-        FloatingActionButton mControlsView = (FloatingActionButton)findViewById(R.id.copyFab);
-        TouchImageView mContentView = (TouchImageView) findViewById(R.id.fullscreen_content);
+        ViewImageFragment f = new ViewImageFragment();
 
-        // Use the URL instead of the cached image. GIFs will not animated when loaded from the cache.
-        final String url = getIntent().getStringExtra("url");
+        Bundle b = getIntent().getBundleExtra("url");
+        f.setArguments(b);
 
-        Ion.with(mContentView)
-                .placeholder(R.drawable.ic_cached_24dp)
-                .error(R.drawable.ic_error_24dp)
-                .load(url);
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.view_image_container, f).addToBackStack(TAG).commit();
 
-        // Set up the user interaction to manually show or hide the system UI.
-        mControlsView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("io.adie.upscoot", url);
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(getApplicationContext(), "URL copied to clipboard!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        UpscootApplication application = (UpscootApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, "Viewing screen: " + TAG);
+        mTracker.setScreenName("Screen~" + TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

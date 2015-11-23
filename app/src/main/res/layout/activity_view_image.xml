@@ -5,21 +5,9 @@
     android:background="#000"
     tools:context="io.adie.upscoot.ViewImageActivity">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-    <io.adie.upscoot.TouchImageView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/copyFab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_content_copy_24dp" />
+    <FrameLayout
+        android:id="@+id/view_image_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
 
 </FrameLayout>
