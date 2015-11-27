@@ -9,10 +9,10 @@
     tools:showIn="@layout/activity_uploaded_images">
 
     <fragment
+        android:id="@+id/uploaded_fragment_container"
+        android:name="io.adie.upscoot.UploadedImagesFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:name="io.adie.upscoot.UploadedImagesFragment"
-        android:id="@+id/uploaded_fragment_container"
         tools:layout="@layout/fragment_uploaded_images" />
 
 </RelativeLayout>

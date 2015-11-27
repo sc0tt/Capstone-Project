@@ -6,6 +6,7 @@ import android.widget.ImageButton;
 
 public class SquareImageButton extends ImageButton {
     public String url = null;
+
     public SquareImageButton(Context context) {
         super(context);
     }

@@ -3,7 +3,6 @@ package io.adie.upscoot.adapters;
 import android.app.Activity;
 import android.app.Application;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,12 +41,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         vh.mImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Log.d(TAG, "Adapter clicked");
-
                 SquareImageButton ib = (SquareImageButton) v;
                 if (ib.url != null)
-                    Log.d(TAG, "ib.url != null");
                     mListener.onImageClicked(ib.url);
             }
         });
@@ -60,8 +55,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         // Set by position here.
         if (!cache.containsKey(mDataset.get(position))) {
             Ion.with(holder.mImageButton)
-                    //.centerCrop()
-                    //.crossfade(true)
                     .placeholder(R.drawable.ic_cached_24dp)
                     .error(R.drawable.ic_error_24dp)
                     .load(mDataset.get(position))

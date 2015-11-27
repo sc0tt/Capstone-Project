@@ -10,17 +10,17 @@
     tools:showIn="@layout/activity_uploaded_images">
 
     <fragment
-        android:layout_weight="1"
+        android:id="@+id/uploaded_fragment_container"
+        android:name="io.adie.upscoot.UploadedImagesFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:name="io.adie.upscoot.UploadedImagesFragment"
-        android:id="@+id/uploaded_fragment_container"
+        android:layout_weight="1"
         tools:layout="@layout/fragment_uploaded_images" />
 
     <FrameLayout
         android:id="@+id/view_image_container"
-        android:layout_weight="2"
         android:layout_width="0dp"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_weight="2" />
 
 </LinearLayout>

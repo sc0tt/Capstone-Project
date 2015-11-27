@@ -2,13 +2,24 @@
     <string name="app_name">Upscoot</string>
     <string name="action_settings">Settings</string>
     <string name="action_refresh">Refresh</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="package_copy">io.adie.upscoot.copied</string>
+    <string name="uploaded_toast_text">Uploaded!</string>
+    <string name="copied_toast_text">URL copied to clipboard!</string>
+    <string name="header_image_desc">Upscoot Logo</string>
+
+    <string name="test_device_id">BBC597A1A5D8D97DADB65A62DD6C30E0</string>
+    <string name="images_source">https://i.sc0tt.net/list.json</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_settings">Settings</string>
 
     <string name="cancel">Cancel</string>
+
+    <!-- Menus -->
+    <string name="gallery_title">Gallery</string>
+    <string name="uploads_title">Uploads</string>
+    <string name="settings_title">Settings</string>
 
     <!-- Preferences -->
     <string name="pref_header_general">General</string>
@@ -34,4 +45,6 @@
     <string name="title_activity_view_image">View Image</string>
 
     <string name="banner_ad_unit_id">ca-app-pub-5339567930089135/9360146918</string>
+    <string name="add_widget">Add widget</string>
+    <string name="uploaded_image">Uploaded image</string>
 </resources>

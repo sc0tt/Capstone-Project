@@ -1,0 +1,15 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2a2a2a"
+    android:padding="@dimen/widget_margin">
+
+    <ImageView
+        android:id="@+id/uploaded_image"
+        android:contentDescription="@string/uploaded_image"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,10 +9,10 @@
     tools:showIn="@layout/app_bar_main">
 
     <fragment
+        android:id="@+id/gallery_fragment_container"
+        android:name="io.adie.upscoot.GalleryFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:name="io.adie.upscoot.GalleryFragment"
-        android:id="@+id/gallery_fragment_container"
         tools:layout="@layout/fragment_gallery" />
 
 

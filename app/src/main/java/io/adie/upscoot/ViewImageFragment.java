@@ -53,9 +53,9 @@ public class ViewImageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("io.adie.upscoot", url);
+                ClipData clip = ClipData.newPlainText(getResources().getString(R.string.package_copy), url);
                 clipboard.setPrimaryClip(clip);
-                Toast.makeText(getActivity(), "URL copied to clipboard!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.copied_toast_text), Toast.LENGTH_SHORT).show();
             }
         });
 

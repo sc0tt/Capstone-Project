@@ -104,14 +104,14 @@ public class UploadActivity extends AppCompatActivity implements UploadPrivacyFr
 
                         if (autoCopy) {
                             ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                            ClipData clip = ClipData.newPlainText("io.adie.upscoot.uploaded", url);
+                            ClipData clip = ClipData.newPlainText(getResources().getString(R.string.package_copy), url);
                             clipboard.setPrimaryClip(clip);
                         }
 
                         UploadedImage img = new UploadedImage(url, currentIntent.getBooleanExtra("private", false));
                         img.save();
 
-                        Toast.makeText(getApplicationContext(), "Uploaded!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.uploaded_toast_text), Toast.LENGTH_SHORT).show();
                     }
                 });
 

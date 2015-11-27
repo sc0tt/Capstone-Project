@@ -61,8 +61,6 @@ public class UploadedImageAdapter extends RecyclerView.Adapter<UploadedImageAdap
         // Set by position here.
         if (!cache.containsKey(mDataset.get(position))) {
             Ion.with(holder.mImageButton)
-                    //.centerCrop()
-                    //.crossfade(true)
                     .placeholder(R.drawable.ic_cached_24dp)
                     .error(R.drawable.ic_error_24dp)
                     .load(mDataset.get(position))

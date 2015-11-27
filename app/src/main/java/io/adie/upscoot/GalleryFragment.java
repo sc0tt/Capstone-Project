@@ -131,7 +131,7 @@ public class GalleryFragment extends Fragment {
 
     public void updateGallery() {
         Ion.with(getContext())
-                .load("https://i.sc0tt.net/list.json")
+                .load(getResources().getString(R.string.images_source))
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
@@ -143,8 +143,7 @@ public class GalleryFragment extends Fragment {
 
                         try {
                             images = new Gson().fromJson(result.get("results"), listType);
-                        } catch (NullPointerException err)
-                        {
+                        } catch (NullPointerException err) {
                             Log.e(TAG, "Error loading images.");
                         }
 
@@ -207,7 +206,6 @@ public class GalleryFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

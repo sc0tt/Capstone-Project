@@ -24,13 +24,13 @@ import com.koushikdutta.ion.Ion;
 import io.adie.upscoot.adapters.GalleryAdapter;
 
 public class GalleryActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, GalleryFragment.OnFragmentInteractionListener, GalleryAdapter.ViewImageListener  {
+        implements NavigationView.OnNavigationItemSelectedListener, GalleryFragment.OnFragmentInteractionListener, GalleryAdapter.ViewImageListener {
 
-    private static final String TAG = GalleryActivity.class.getSimpleName();
     public static final int SELECT_PICTURE = 1;
+    private static final String TAG = GalleryActivity.class.getSimpleName();
     static boolean isMasterDetails = false;
-    private Tracker mTracker;
     AdView mAdView;
+    private Tracker mTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class GalleryActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        if(findViewById(R.id.view_image_container) != null) {
+        if (findViewById(R.id.view_image_container) != null) {
             GalleryActivity.isMasterDetails = true;
         }
 
@@ -60,9 +60,10 @@ public class GalleryActivity extends AppCompatActivity
 
         try {
             mAdView = (AdView) findViewById(R.id.adView);
+            String deviceID = getResources().getString(R.string.test_device_id);
             AdRequest adRequest = new AdRequest.Builder()
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .addTestDevice("BBC597A1A5D8D97DADB65A62DD6C30E0")
+                    .addTestDevice(deviceID)
                     .build();
             mAdView.loadAd(adRequest);
         } catch (NullPointerException err) {
@@ -73,7 +74,6 @@ public class GalleryActivity extends AppCompatActivity
     @Override
     public void onResume() {
         super.onResume();
-        Log.i(TAG, "Viewing screen: " + TAG);
         mTracker.setScreenName("Screen~" + TAG);
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
@@ -121,20 +121,13 @@ public class GalleryActivity extends AppCompatActivity
         return true;
     }
 
-    /*public void onImageClicked(String key) {
-        Intent intent = new Intent(this, ViewImageActivity.class);
-        intent.putExtra("url", key);
-        startActivity(intent);
-    }*/
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_gallery) {
-
+            // TODO ?
         } else if (id == R.id.uploads) {
             Intent uploadedImagesIntent = new Intent(GalleryActivity.this, UploadedImagesActivity.class);
             startActivity(uploadedImagesIntent);

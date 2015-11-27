@@ -8,6 +8,6 @@
     <FrameLayout
         android:id="@+id/view_image_container"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+        android:layout_height="fill_parent" />
 
 </FrameLayout>

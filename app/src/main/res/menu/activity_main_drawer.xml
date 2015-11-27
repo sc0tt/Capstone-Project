@@ -7,18 +7,18 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_photo_library_24dp"
-            android:title="Gallery" />
+            android:title="@string/gallery_title" />
         <item
             android:id="@+id/uploads"
             android:icon="@drawable/ic_photo_album_24dp"
-            android:title="Uploads" />
+            android:title="@string/uploads_title" />
     </group>
 
     <group android:id="@+id/config_group">
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings_24dp"
-            android:title="Settings" />
+            android:title="@string/settings_title" />
     </group>
 
 
