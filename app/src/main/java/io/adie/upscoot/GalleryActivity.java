@@ -126,9 +126,7 @@ public class GalleryActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_gallery) {
-            // TODO ?
-        } else if (id == R.id.uploads) {
+        if (id == R.id.uploads) {
             Intent uploadedImagesIntent = new Intent(GalleryActivity.this, UploadedImagesActivity.class);
             startActivity(uploadedImagesIntent);
         } else if (id == R.id.settings) {
